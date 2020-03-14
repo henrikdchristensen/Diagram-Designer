@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DemoApp.Persistence.Common\DemoApp.Persistence.Common.csproj" />
+    <ProjectReference Include="..\DemoApp.Persistence.RavenDB\DemoApp.Persistence.RavenDB.csproj" />
+    <ProjectReference Include="..\DiagramDesigner\DiagramDesigner.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Persist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Setting.png" />
+  </ItemGroup>
+
+</Project>
