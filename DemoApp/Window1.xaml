@@ -13,52 +13,259 @@
         <KeyBinding Key="Del"
                     Command="{Binding DeleteSelectedItemsCommand}" />
     </Window.InputBindings>
-	
-	<DockPanel Margin="0">
-		<ToolBar Height="35" DockPanel.Dock="Top">
-			<Button ToolTip="New"
-                    Content="New"
-					Margin="8,0,3,0"
-                    Command="{Binding CreateNewDiagramCommand}"/>
-            <Button ToolTip="Save"
-                    Content="Save"
-                    Margin="8,0,3,0"
-                    Command="{Binding SaveDiagramCommand}" />
-            <Button ToolTip="Ungroup/Group"
-                    Content="Ungroup/Group"
-                    Margin="8,0,3,0"
-                    Command="{Binding GroupCommand}" />
-            <Label Margin="30,0,3,0"
-                   VerticalAlignment="Center"
-                   Content="Saved Diagrams" />
-            <ComboBox Margin="8,0,3,0"
-                     Width="200"
-                     ToolTip="Saved Diagrams"
-                      SelectedItem="{Binding SavedDiagramId}"
-                     ItemsSource="{Binding SavedDiagrams}"/>
-            <Button ToolTip="Load Selected Diagram"
-                    Content="Load"
-                    Margin="8,0,3,0"
-                    Command="{Binding LoadDiagramCommand}" />
-            <ProgressBar Margin="8,0,3,0"
-                         Visibility="{Binding Path=IsBusy, Converter={x:Static s:BoolToVisibilityConverter.Instance}}"
-                         IsIndeterminate="True"
-                         Width="150"
-                         Height="20"
-                         VerticalAlignment="Center" />
 
+    <DockPanel Margin="0">
+        <ToolBar Height="140" DockPanel.Dock="Top">
+            <StackPanel Height="70" Orientation="Horizontal">
+                <!-- new command -->
+                <Button ToolTip="New"
+					    Margin="8,0,3,0"
+                        Command="{Binding CreateNewDiagramCommand}">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="Images/GenericDocument.png" Width="30"/>
+                            <TextBlock Grid.Row="1" Text="New" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <!-- save command -->
+                <Button ToolTip="Save"
+                        Margin="8,0,3,0"
+                        Command="{Binding SaveDiagramCommand}" >
+                    <Button.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="Images/Save.png" Width="30"/>
+                            <TextBlock Grid.Row="1" Text="Save" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <!-- Ungroup/Group command -->
+                <Button ToolTip="Ungroup/Group"
+                        Content="Ungroup/Group"
+                        Margin="8,0,3,0"
+                        Command="{Binding GroupCommand}" />
+                <Label Margin="30,0,3,0"
+                        VerticalAlignment="Center"
+                        Content="Saved Diagrams" />
+                <ComboBox Margin="8,0,3,0"
+                            Width="200"
+                            ToolTip="Saved Diagrams"
+                            SelectedItem="{Binding SavedDiagramId}"
+                            ItemsSource="{Binding SavedDiagrams}"/>
+                <!-- load command -->
+                <Button ToolTip="Load Selected Diagram"
+                        Margin="8,0,3,0"
+                        Command="{Binding LoadDiagramCommand}" >
+                    <Button.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="Images/OpenFolder.png" Width="30"/>
+                            <TextBlock Grid.Row="1" Text="Load" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <ProgressBar Margin="8,0,3,0"
+                            Visibility="{Binding Path=IsBusy, Converter={x:Static s:BoolToVisibilityConverter.Instance}}"
+                            IsIndeterminate="True"
+                            Width="150"
+                            Height="20"
+                            VerticalAlignment="Center" />
+                <!-- print command -->
+                <Button ToolTip="Print"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="Images/Print.png" Width="30"/>
+                            <TextBlock Grid.Row="1" Text="Print" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <!-- paste command -->
+                <Button ToolTip="Paste"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="Images/PasteBig.png" Width="30"/>
+                            <TextBlock Grid.Row="1" Text="Paste" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <!-- cut command -->
+                <Button ToolTip="Cut"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="Images/Cut.png" Width="30"/>
+                            <TextBlock Grid.Row="1" Text="Cut" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <!-- copy command -->
+                <Button ToolTip="Copy"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="Images/Copy.png" Width="30"/>
+                            <TextBlock Grid.Row="1" Text="Copy" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <!-- delete command -->
+                <Button ToolTip="Delete"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="Images/Delete.png" Width="30"/>
+                            <TextBlock Grid.Row="1" Text="Delete" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="AlignLeft"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/AlignObjectsLeft.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="AlignHorizontalCenters"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/AlignObjectsCenteredHorizontal.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="AlignRight"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/AlignObjectsRight.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="AlignTop"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/AlignObjectsTop.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="AlignVerticalCenter"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/AlignObjectsCenteredVertical.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="AlignBottom"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/AlignObjectsBottom.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="DistributeHorizontal"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/DistributeObjectsHorizontal.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="DistributeVertical"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/DistributeObjectsVertical.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="Group"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/Group.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="Ungroup"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/Ungroup.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="BringForward"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/BringForward.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="BringToFront"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/BringToFront.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="SendBackward"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/SendBackward.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+                <!-- command -->
+                <Button ToolTip="SendToBack"
+                        Margin="8,0,3,0">
+                    <Button.Content>
+                        <Image Grid.Row="0" Source="Images/SendToBack.png" Width="30"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
 
         </ToolBar>
 		
 		<Grid Margin="0,5,0,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="230" />
-				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="230" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
 
             <!-- ToolBox Control -->
             <local:ToolBoxControl Grid.Column="0"
-                                  DataContext="{Binding ToolBoxViewModel}" />
+                                  DataContext="{Binding ToolBoxViewModel}" Grid.RowSpan="2" />
 
             <GridSplitter Grid.Column="1"
 						  HorizontalAlignment="Left"
@@ -70,6 +277,13 @@
             <s:DiagramControl Grid.Column="1"
                                   DataContext="{Binding DiagramViewModel}"
                                   Margin="3,1,0,0" />
+
+            <!-- Results view -->
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1">
+                        <Label>Results</Label>
+            </StackPanel>
+
         </Grid>
 	</DockPanel>    
 	

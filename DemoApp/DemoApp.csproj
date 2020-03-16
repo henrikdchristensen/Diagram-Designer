@@ -14,9 +14,29 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Persist.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Setting.png" />
+    <Resource Include="Images\GenericDocument.png" />
+    <Resource Include="Images\OpenFolder.png" />
+    <Resource Include="Images\Save.png" />
+    <Resource Include="Images\Print.png" />
+    <Resource Include="Images\PasteBig.png" />
+    <Resource Include="Images\Cut.png" />
+    <Resource Include="Images\Copy.png" />
+    <Resource Include="Images\Delete.png" />
+    <Resource Include="Images\AlignObjectsLeft.png" />
+    <Resource Include="Images\AlignObjectsCenteredHorizontal.png" />
+    <Resource Include="Images\AlignObjectsRight.png" />
+    <Resource Include="Images\AlignObjectsTop.png" />
+    <Resource Include="Images\AlignObjectsCenteredVertical.png" />
+    <Resource Include="Images\AlignObjectsBottom.png" />
+    <Resource Include="Images\DistributeObjectsHorizontal.png" />
+    <Resource Include="Images\DistributeObjectsVertical.png" />
+    <Resource Include="Images\Group.png" />
+    <Resource Include="Images\Ungroup.png" />
+    <Resource Include="Images\BringForward.png" />
+    <Resource Include="Images\BringToFront.png" />
+    <Resource Include="Images\SendBackward.png" />
+    <Resource Include="Images\SendToBack.png" />
   </ItemGroup>
 
 </Project>
