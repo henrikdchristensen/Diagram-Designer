@@ -7,9 +7,9 @@
     <!-- Connector Style -->
     <Style TargetType="{x:Type s:Connector}">
         <Setter Property="Width"
-                Value="8" />
+                Value="12" />
         <Setter Property="Height"
-                Value="8" />
+                Value="12" />
         <Setter Property="Cursor"
                 Value="Cross" />
         <Setter Property="SnapsToDevicePixels"
@@ -20,7 +20,7 @@
                     <Grid>
                         <!-- transparent extra space makes connector easier to hit -->
                         <Rectangle Fill="Transparent"
-                                   Margin="-2" />
+                                   Margin="-4" />
                         <Rectangle Fill="Lavender"
                                    StrokeThickness="1"
                                    Stroke="#AA000080" />
