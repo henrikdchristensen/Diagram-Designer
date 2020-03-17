@@ -95,9 +95,9 @@
             <!-- Saved Diagrams -->
             <GroupBox Header="Saved Diagrams" Margin="3">
                 <StackPanel>
-                    <ComboBox Margin="2,0,2,5"
+                    <ComboBox ToolTip="Saved Diagrams"
+                              Margin="2,0,2,5"
                             Width="100"
-                            ToolTip="Saved Diagrams"
                             SelectedItem="{Binding SavedDiagramId}"
                             ItemsSource="{Binding SavedDiagrams}"/>
                     <ProgressBar Margin="2,10,2,0"
@@ -191,43 +191,43 @@
                         <Border BorderThickness="1" CornerRadius="2" Margin="3">
                             <StackPanel Orientation="Horizontal">
                                 <!-- TODO: AlignLeft command -->
-                                <Button ToolTip="AlignLeft"
-                       Padding="5">
+                                <Button ToolTip="Align Left"
+                                        Padding="5">
                                     <Button.Content>
                                         <Image Source="Images/AlignObjectsLeft.png" Width="16"/>
                                     </Button.Content>
                                 </Button>
-                                <!-- TODO: AlignHorizontalCenters command -->
-                                <Button ToolTip="AlignHorizontalCenters"
-                        Padding="5" >
+                                <!-- TODO: AlignCenteredHorizontal command -->
+                                <Button ToolTip="Align Centered Horizontal"
+                                        Padding="5" >
                                     <Button.Content>
                                         <Image Source="Images/AlignObjectsCenteredHorizontal.png" Width="16"/>
                                     </Button.Content>
                                 </Button>
                                 <!-- TODO: AlignRight command -->
-                                <Button ToolTip="AlignRight"
-                        Padding="5" >
+                                <Button ToolTip="Align Right"
+                                        Padding="5" >
                                     <Button.Content>
                                         <Image Source="Images/AlignObjectsRight.png" Width="16"/>
                                     </Button.Content>
                                 </Button>
                                 <!-- TODO: AlignTop command -->
-                                <Button ToolTip="AlignTop"
-                        Padding="5" >
+                                <Button ToolTip="Align Top"
+                                        Padding="5" >
                                     <Button.Content>
                                         <Image Source="Images/AlignObjectsTop.png" Width="16"/>
                                     </Button.Content>
                                 </Button>
-                                <!-- TODO: AlignVerticalCenter command -->
-                                <Button ToolTip="AlignVerticalCenter"
-                        Padding="5" >
+                                <!-- TODO: AlignCenteredVertical command -->
+                                <Button ToolTip="Align Centered Vertical"
+                                        Padding="5" >
                                     <Button.Content>
                                         <Image Source="Images/AlignObjectsCenteredVertical.png" Width="16"/>
                                     </Button.Content>
                                 </Button>
                                 <!-- TODO: AlignBottom command -->
-                                <Button ToolTip="AlignBottom"
-                        Padding="5" >
+                                <Button ToolTip="Align Bottom"
+                                        Padding="5" >
                                     <Button.Content>
                                         <Image Source="Images/AlignObjectsBottom.png" Width="16"/>
                                     </Button.Content>
@@ -237,7 +237,7 @@
                     </StackPanel>
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="5,0,0,0">
                         <!-- TODO: DistributeHorizontal command -->
-                        <Button ToolTip="DistributeHorizontal"
+                        <Button ToolTip="Distribute Horizontal"
                                 Margin="3"
                                 Padding="5"
                                 HorizontalContentAlignment="Left">
@@ -253,7 +253,7 @@
                             </Button.Content>
                         </Button>
                         <!-- TODO: DistributeVertical command -->
-                        <Button ToolTip="DistributeVertical"
+                        <Button ToolTip="Distribute Vertical"
                                 Margin="3"
                                 Padding="5"
                                 HorizontalContentAlignment="Left">
@@ -319,7 +319,7 @@
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="7,0,0,0">
                         <!-- TODO: BringForward command -->
-                        <Button ToolTip="BringForward"
+                        <Button ToolTip="Bring Forward"
                                 Margin="0,3,0,3"
                                 Padding="5"
                                 HorizontalContentAlignment="Left">
@@ -335,7 +335,7 @@
                             </Button.Content>
                         </Button>
                         <!-- TODO: BringToFront command -->
-                        <Button ToolTip="BringToFront"
+                        <Button ToolTip="Bring To Front"
                                 Margin="0,3,0,3"
                                 Padding="5"
                                 HorizontalContentAlignment="Left">
@@ -357,7 +357,7 @@
                       Grid.Column="1" Margin="3,0,0,0"/>
                     <StackPanel Grid.Column="2">
                         <!-- TODO: SendBackward command -->
-                        <Button ToolTip="SendBackward"
+                        <Button ToolTip="Send Backward"
                                 Margin="0,3,0,3"
                                 Padding="5"
                                 HorizontalContentAlignment="Left">
@@ -373,7 +373,7 @@
                             </Button.Content>
                         </Button>
                         <!-- TODO: SendToBack command -->
-                        <Button ToolTip="SendToBack"
+                        <Button ToolTip="Send To Back"
                                 Margin="0,3,0,3"
                                 Padding="5"
                                 HorizontalContentAlignment="Left">
@@ -411,18 +411,34 @@
 						  HorizontalAlignment="Left"
 						  VerticalAlignment="Stretch"
 						  Background="Transparent"
-						  Width="3" />
+						  Width="5" />
 
             <!-- Diagram Control -->
             <s:DiagramControl Grid.Column="1"
                                   DataContext="{Binding DiagramViewModel}"
                                   Margin="3,1,0,0" />
 
+            <GridSplitter Grid.Row="1"
+                          Grid.Column="2"
+						  HorizontalAlignment="Stretch"
+                          VerticalAlignment="Top"
+						  Background="Transparent"
+						  Height="5" />
+
             <!-- Results view -->
-            <StackPanel Grid.Row="1"
+            <TabControl Margin="0,5,0,0"
+                        Grid.Row="1"
                         Grid.Column="1">
-                <Label>Results</Label>
-            </StackPanel>
+                <TabItem Header="General">
+                    <Label Content="Content1 goes here..." />
+                </TabItem>
+                <TabItem Header="Security">
+                    <Label Content="Content2 goes here..." />
+                </TabItem>
+                <TabItem Header="Details">
+                    <Label Content="Content3 goes here..." />
+                </TabItem>
+            </TabControl>
 
         </Grid>
     </DockPanel>
