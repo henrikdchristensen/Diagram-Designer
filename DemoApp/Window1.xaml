@@ -160,7 +160,7 @@
                                 </Grid>
                             </Button.Content>
                         </Button>
-                        <!-- TODO: Delete command -->
+                        <!-- Delete command -->
                         <Button ToolTip="Delete"
                                 Margin="1"
                                 Padding="2"
