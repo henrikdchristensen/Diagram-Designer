@@ -15,6 +15,7 @@ namespace DemoApp
         private string? savedDiagramId;
         private List<SelectableDesignerItemViewModelBase> itemsToRemove;
         private List<SelectableDesignerItemViewModelBase> itemsToCopy;
+        private List<SelectableDesignerItemViewModelBase> itemsToAlign;
         private IMessageBoxService messageBoxService;
         private IDatabaseAccessService databaseAccessService;
         private DiagramViewModel diagramViewModel = new DiagramViewModel();
@@ -40,7 +41,7 @@ namespace DemoApp
             LoadDiagramCommand = new SimpleCommand(ExecuteLoadDiagramCommand);
             GroupCommand = new SimpleCommand(ExecuteGroupCommand);
             CopySelectedItemsCommand = new SimpleCommand(ExecuteCopySelectedItemsCommand);
-
+            AlignLeftCommand = new SimpleCommand(ExecuteAlignLeftCommand);
             //OrthogonalPathFinder is a pretty bad attempt at finding path points, it just shows you, you can swap this out with relative
             //ease if you wish just create a new IPathFinder class and pass it in right here
             ConnectorViewModel.PathFinder = new OrthogonalPathFinder();
@@ -50,6 +51,7 @@ namespace DemoApp
 
         public SimpleCommand DeleteSelectedItemsCommand { get; private set; }
         public SimpleCommand CopySelectedItemsCommand { get; private set; }
+        public SimpleCommand AlignLeftCommand { get; private set; }
         public SimpleCommand CreateNewDiagramCommand { get; private set; }
         public SimpleCommand SaveDiagramCommand { get; private set; }
         public SimpleCommand GroupCommand { get; private set; }
@@ -119,6 +121,32 @@ namespace DemoApp
                     savedDiagramId = value;
                     NotifyChanged("SavedDiagramId");
                 }
+            }
+        }
+
+        private void ExecuteAlignLeftCommand(object parameter)
+        {
+            itemsToAlign = DiagramViewModel.SelectedItems;
+            // Check which type of item that is copied
+            int cnt = 0;
+            double left = 0;
+            foreach (var selectedItem in itemsToAlign.OfType<PersistDesignerItemViewModel>().ToList())
+            {
+                if (cnt == 0)
+                {
+                    left = selectedItem.Left;
+                }
+                cnt++;
+                selectedItem.Left = left;
+            }
+            foreach (var selectedItem in itemsToAlign.OfType<SettingsDesignerItemViewModel>().ToList())
+            {
+                if (cnt == 0)
+                {
+                    left = selectedItem.Left;
+                }
+                cnt++;
+                selectedItem.Left = left;
             }
         }
 

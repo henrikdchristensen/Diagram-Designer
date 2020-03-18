@@ -195,10 +195,11 @@
                             <StackPanel Orientation="Horizontal">
                                 <!-- TODO: AlignLeft command -->
                                 <Button ToolTip="Align Left"
-                                        Padding="5">
-                                    <Button.Content>
-                                        <Image Source="Images/AlignObjectsLeft.png" Width="16"/>
-                                    </Button.Content>
+                                        Padding="5"
+                                        Command="{Binding AlignLeftCommand}" >
+                                <Button.Content>
+                                    <Image Source="Images/AlignObjectsLeft.png" Width="16"/>
+                                </Button.Content>
                                 </Button>
                                 <!-- TODO: AlignCenteredHorizontal command -->
                                 <Button ToolTip="Align Centered Horizontal"
