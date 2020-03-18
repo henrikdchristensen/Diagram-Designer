@@ -74,11 +74,12 @@
                                 </Grid>
                             </Button.Content>
                         </Button>
-                        <!-- TODO: Print command -->
+                        <!-- Print command -->
                         <Button ToolTip="Print"
                                 Margin="1"
                                 Padding="2"
-                                HorizontalContentAlignment="Left">
+                                HorizontalContentAlignment="Left"
+                                Command="{Binding PrintCommand}" >
                             <Button.Content>
                                 <Grid>
                                     <Grid.ColumnDefinitions>

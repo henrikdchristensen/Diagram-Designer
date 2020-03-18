@@ -1,6 +1,6 @@
 ﻿namespace DemoApp.Persistence.Common
 {
-    public enum Orientation
+    public enum MyOrientation
     {
         None = 0,
         Left = 1,

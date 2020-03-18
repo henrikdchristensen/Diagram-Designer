@@ -5,6 +5,7 @@ using DiagramDesigner;
 using DemoApp.Persistence.Common;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace DemoApp
 {
@@ -42,13 +43,17 @@ namespace DemoApp
             GroupCommand = new SimpleCommand(ExecuteGroupCommand);
             CopySelectedItemsCommand = new SimpleCommand(ExecuteCopySelectedItemsCommand);
             AlignLeftCommand = new SimpleCommand(ExecuteAlignLeftCommand);
+            PrintCommand = new SimpleCommand(ExecutePrintCommand);
             //OrthogonalPathFinder is a pretty bad attempt at finding path points, it just shows you, you can swap this out with relative
             //ease if you wish just create a new IPathFinder class and pass it in right here
             ConnectorViewModel.PathFinder = new OrthogonalPathFinder();
 
+            
+
+
         }
 
-
+        public SimpleCommand PrintCommand { get; private set; }
         public SimpleCommand DeleteSelectedItemsCommand { get; private set; }
         public SimpleCommand CopySelectedItemsCommand { get; private set; }
         public SimpleCommand AlignLeftCommand { get; private set; }
@@ -121,6 +126,16 @@ namespace DemoApp
                     savedDiagramId = value;
                     NotifyChanged("SavedDiagramId");
                 }
+            }
+        }
+
+        public void ExecutePrintCommand(object sender)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                UIElement parent = App.Current.MainWindow; // get root view
+                printDialog.PrintVisual(parent, "Print");
             }
         }
 
@@ -558,43 +573,43 @@ namespace DemoApp
         }
 
 
-        private Orientation GetOrientationFromConnector(ConnectorOrientation connectorOrientation)
+        private MyOrientation GetOrientationFromConnector(ConnectorOrientation connectorOrientation)
         {
-            Orientation result = Orientation.None;
+            MyOrientation result = MyOrientation.None;
             switch (connectorOrientation)
             {
                 case ConnectorOrientation.Bottom:
-                    result = Orientation.Bottom;
+                    result = MyOrientation.Bottom;
                     break;
                 case ConnectorOrientation.Left:
-                    result = Orientation.Left;
+                    result = MyOrientation.Left;
                     break;
                 case ConnectorOrientation.Top:
-                    result = Orientation.Top;
+                    result = MyOrientation.Top;
                     break;
                 case ConnectorOrientation.Right:
-                    result = Orientation.Right;
+                    result = MyOrientation.Right;
                     break;
             }
             return result;
         }
 
 
-        private ConnectorOrientation GetOrientationForConnector(Orientation persistedOrientation)
+        private ConnectorOrientation GetOrientationForConnector(MyOrientation persistedOrientation)
         {
             ConnectorOrientation result = ConnectorOrientation.None;
             switch (persistedOrientation)
             {
-                case Orientation.Bottom:
+                case MyOrientation.Bottom:
                     result = ConnectorOrientation.Bottom;
                     break;
-                case Orientation.Left:
+                case MyOrientation.Left:
                     result = ConnectorOrientation.Left;
                     break;
-                case Orientation.Top:
+                case MyOrientation.Top:
                     result = ConnectorOrientation.Top;
                     break;
-                case Orientation.Right:
+                case MyOrientation.Right:
                     result = ConnectorOrientation.Right;
                     break;
             }
