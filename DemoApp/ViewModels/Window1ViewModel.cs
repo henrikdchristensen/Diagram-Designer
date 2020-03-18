@@ -14,6 +14,7 @@ namespace DemoApp
         private List<string> savedDiagrams = new List<string>();
         private string? savedDiagramId;
         private List<SelectableDesignerItemViewModelBase> itemsToRemove;
+        private List<SelectableDesignerItemViewModelBase> itemsToCopy;
         private IMessageBoxService messageBoxService;
         private IDatabaseAccessService databaseAccessService;
         private DiagramViewModel diagramViewModel = new DiagramViewModel();
@@ -38,6 +39,7 @@ namespace DemoApp
             SaveDiagramCommand = new SimpleCommand(ExecuteSaveDiagramCommand);
             LoadDiagramCommand = new SimpleCommand(ExecuteLoadDiagramCommand);
             GroupCommand = new SimpleCommand(ExecuteGroupCommand);
+            CopySelectedItemsCommand = new SimpleCommand(ExecuteCopySelectedItemsCommand);
 
             //OrthogonalPathFinder is a pretty bad attempt at finding path points, it just shows you, you can swap this out with relative
             //ease if you wish just create a new IPathFinder class and pass it in right here
@@ -47,6 +49,7 @@ namespace DemoApp
 
 
         public SimpleCommand DeleteSelectedItemsCommand { get; private set; }
+        public SimpleCommand CopySelectedItemsCommand { get; private set; }
         public SimpleCommand CreateNewDiagramCommand { get; private set; }
         public SimpleCommand SaveDiagramCommand { get; private set; }
         public SimpleCommand GroupCommand { get; private set; }
@@ -119,7 +122,26 @@ namespace DemoApp
             }
         }
 
-
+        private void ExecuteCopySelectedItemsCommand(object parameter)
+        {
+            itemsToCopy = DiagramViewModel.SelectedItems;
+            // Check which type of item that is copied
+            foreach (var selectedItem in itemsToCopy.OfType<PersistDesignerItemViewModel>().ToList())
+            {
+                PersistDesignerItemViewModel newPersist = new PersistDesignerItemViewModel();
+                newPersist.Left = 10; // location where the copied
+                newPersist.Top = 10; // location where the copied
+                newPersist.HostUrl = selectedItem.HostUrl; // copy the same host url into the new one
+                DiagramViewModel.AddItemCommand.Execute(newPersist);
+            }
+            foreach (var selectedItem in itemsToCopy.OfType<SettingsDesignerItemViewModel>().ToList())
+            {
+                SettingsDesignerItemViewModel newSettings = new SettingsDesignerItemViewModel();
+                newSettings.Left = 10; // location where the copied
+                newSettings.Top = 10; // location where the copied
+                DiagramViewModel.AddItemCommand.Execute(newSettings);
+            }
+        }
 
         private void ExecuteDeleteSelectedItemsCommand(object parameter)
         {

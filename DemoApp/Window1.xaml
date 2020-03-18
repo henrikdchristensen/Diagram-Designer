@@ -12,6 +12,8 @@
     <Window.InputBindings>
         <KeyBinding Key="Del"
                     Command="{Binding DeleteSelectedItemsCommand}" />
+        <KeyBinding Key="C" Modifiers="Control"
+                    Command="{Binding CopySelectedItemsCommand}" />
     </Window.InputBindings>
 
     <DockPanel Margin="0">
